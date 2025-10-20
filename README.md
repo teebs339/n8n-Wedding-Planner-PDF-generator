@@ -84,7 +84,13 @@ Example output (simplified):
   Wedding suggestions PDF sample:
 
   <img src="./public/suggestion-page_template.png" alt="Wedding Suggestions Preview" width="300" height="400" target="_blank" />
+  <br />
   <a href="https://www.canva.com/design/DAG2Pp99ak8/3WrDB1LZoeQSrnFIzeDFGw/edit" target="_blank" rel="noopener noreferrer">Get suggestion page</a>
+
+- **Email Layout:**  
+  Email sample:
+
+  <img src="./public/email_template.png" alt="Email Preview" width="406" height="311" target="_blank" />
 
 - **Google Sheet Reference:**  
   A public demo sheet showing the **questions and answers** will be provided:  
