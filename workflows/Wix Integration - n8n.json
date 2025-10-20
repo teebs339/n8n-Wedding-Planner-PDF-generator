@@ -1,0 +1,1588 @@
+{
+  "name": "Wix Integration - n8n",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "bac7e4d9-81c1-4247-a4eb-795c6643080a",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -3424,
+        480
+      ],
+      "id": "810a3e38-a707-44bb-be27-4312de28fc4b",
+      "name": "Webhook",
+      "webhookId": "bac7e4d9-81c1-4247-a4eb-795c6643080a"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=PRIORITY: Treat the answer to \"Any other special requests or details to make your day perfect?*\" as the highest-priority free-text field. If it contains additional timings, timeline events, vendor details, or venue information, parse and merge those details into the appropriate sections (timeline, vendors, locations, notes) when producing the JSON.\n\ntimeline data:\nQ: Who will be involved in the first look? A: {{ $json['Who will be involved in the first look?*'] }}\nQ: Bridesmaids arrival window (e.g., 8:00 AM–8:30 AM). A: {{ $json['Bridesmaids arrival window'] ? $json['Bridesmaids arrival window*'] : \"No data\" }}\nQ: Groomsmen arrival time. A: {{ $json['Groomsmen arrival time*'] ? $json['Groomsmen arrival time*'] : \"No data\" }}\nQ: Processional line-up time. A: {{ $json['Processional line-up time*'] ? $json['Processional line-up time*'] : \"No data\" }}\nQ: First dance time. A: {{ $json['First dance time*'] ? $json['First dance time*'] : \"No data\" }}\nQ: Cake cutting time. A: {{ $json['Cake cutting time*'] ? $json['Cake cutting time*'] : \"No data\" }}\nQ: When would you like a private dining moment for just the couple? A: {{ $json['When would you like a private dining moment for just the couple?*'] }}\nQ: While exchanging gifts, letters, or vows privately, would you like these moments captured in photos/video? A: {{ $json['While exchanging gifts, letters, or vows privately, would you like these moments captured in photos/video? *'] }}\nQ: When would you like to exchange gifts, letters, or private vows? A: {{ $json['When would you like to exchange gifts privately?'] ? $json['When would you like to exchange gifts privately?'] : \"No data\" }}\nQ: Wedding favours distribution time. A: {{ $json['Wedding favours distribution time*'] }}\nQ: In what order will the bridal party be formally introduced? A: {{ $json['In what order will the bridal party be formally introduced?*'] }}\nQ: When and who will perform their speeches/toasts? A: {{ $json['When and who will perform their speeches/toasts?*'] }}\nQ: When will you have the bouquet toss? A: {{ $json['When will you have the bouquet toss?*'] }}\nQ: What is the planned end time for the reception? A: {{ $json['What is the planned end time for the reception?'] ? $json['What is the planned end time for the reception?'] : \"No data\" }}\nQ: What time is the after-party? A: {{ $json['What time is the after-party'] ? $json['What time is the after-party*'] : \"No data\" }}\nQ: Describe the style of the grand exit. A: {{ $json['Describe the style of the grand exit*'] ? $json['Describe the style of the grand exit*'] : \"No data\" }}\n\nvendors data:\nFlorist is: {{ $json['Florist is*'] }} - Data: {{ $json['Florist Name/Company and Phone no. or email*'] ? $json['Florist Name/Company and Phone no. or email*'] : \"No data\" }}\nBakery is: {{ $json['Bakery is*'] }} - Data: {{ $json['Bakery Name/Company and Phone no. or email*'] ? $json['Bakery Name/Company and Phone no. or email*'] : \"No data\" }}\nDJ or Band is: {{ $json['DJ or Band is*'] }} - Data: {{ $json['DJ or Band Name/Company and Phone no. or email*'] ? $json['DJ or Band Name/Company and Phone no. or email*'] : \"No data\" }}\nPhotographer is: {{ $json['Photographer is*'] }} - Data: {{ $json['Photographer Name/Company and Phone no. or email*'] ? $json['Photographer Name/Company and Phone no. or email*'] : \"No data\" }}\nVideographer is: {{ $json['Videographer is*'] }} - Data: {{ $json['Videographer Name/Company and Phone no. or email*'] ? $json['Videographer Name/Company and Phone no. or email*'] : \"No data\" }}\nPhotobooth is: {{ $json['Photobooth is*'] ? $json['Photobooth is*'] : \"No data\" }} - Data: {{ $json['Photobooth Name/Company and Phone no. or email*'] ? $json['Photobooth Name/Company and Phone no. or email*'] : \"No data\" }}\nDecor provider is: {{ $json['Decor Provider is*'] }} - Data: {{ $json['Décor Name/Company and Phone no. or email*'] ? $json['Décor Name/Company and Phone no. or email*'] : \"No data\" }}\nCatering is: {{ $json['Catering is*'] }} - Data: {{ $json['Catering Name/Company and Phone no. or email*'] ? $json['Catering Name/Company and Phone no. or email*'] : \"No data\" }}\nHair Stylist is: {{ $json['Hair Stylist is*'] }} - Data: {{ $json['Hair stylist Name/Company and Phone no. or email*'] ? $json['Hair stylist Name/Company and Phone no. or email*'] : \"No data\" }}\nMakeup Artist is: {{ $json['Makeup Artist is*'] }} - Data: {{ $json['Makeup artist Name/Company and Phone no. or email*'] ? $json['Makeup artist Name/Company and Phone no. or email*'] : \"No data\" }}\nOfficiant is: {{ $json['Officiant is*'] }} - Data: {{ $json['Officiant Name/Company and Phone no. or email*'] ? $json['Officiant Name/Company and Phone no. or email*'] : \"No data\" }}\n\nnotes_details data:\nQ: How many guests are you expecting? A: {{ $json['How many guests are you expecting?*'] }}\nQ: Are the events indoors, outdoors, or a mix? A: {{ $json['Are the events indoors, outdoors, or a mix?'] ? $json['Are the events indoors, outdoors, or a mix?'] : \"No data\" }}\nQ: Provide details on the special seating arrangements: A: {{ $json['Provide details on the special seating arrangements'] ? $json['Provide details on the special seating arrangements*'] : \"No data\" }}\nQ: Additional Info (Vendors): A: {{ $json['Additional Info (Vendors)'] ? $json['Additional Info (Vendors)'] : \"No data\" }}\nQ: Any other special requests or details to make your day perfect? A: {{ $json['Any other special requests or details to make your day perfect?*'] }}\n\nlocations data:\nQ: Ceremony location. A: {{ $json['Ceremony location*'] ? $json['Ceremony location*'] : \"No data\" }}\nQ: Reception location. A: {{ $json['Reception location*'] ? $json['Reception location*'] : \"No data\" }}\nQ: Note: Wedding/Ceremony venue should be merged by the system into a single venue entry and address must be included when provided.\nQ: Where will the bride be getting ready? A: {{ $json['Where will the bride be getting ready?'] ? $json['Where will the bride be getting ready?'] : \"No data\" }}\nQ: Where will the groom and groomsmen be getting ready? A: {{ $json['Where will the groom and groomsmen be getting ready?'] ? $json['Where will the groom and groomsmen be getting ready?'] : \"No data\" }}\nQ: Where is the rehearsal scheduled? A: {{ $json['Where is the rehearsal scheduled*'] ? $json['Where is the rehearsal scheduled*'] : \"No data\" }}\n\nwedding_name_time data:\nQ: Bride and Groom's name. A: {{ $json['Bride and Groom\\'s name*'] }}\nQ: What is the date/time of your wedding? A: {{ $json['What is the date/time of your wedding?*'] }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a data-processing assistant for a wedding planner. Use your biggest brain model and critical thinking for this job. Don't use \"—\" in the output. You are given questions and answers for the following headers: 1. Timeline 2. Vendors detail 3. Extra notes / details 4. Locations and finally 5. Wedding name & time. In the details of each of these headers are data taken from a google form. Your job is to use your intelligence to convert the detailed data given by a user, convert it into a neat heading style points, extract the time and data separately, export all the data into ascending order based on time and events as given in the form data by the user and finally prepare a JSON as an output. I ONLY need the json output absolutely nothing else. Note that some questions given will not always be answered so dont add them into the output JSON.\n\nAdditional Information:\n- Make sure to keep the details compact and concise. Maximum length is one liners. \n- Don't use \":\" in the details and keep it wedding vibe oriented and add only statements instead of cold data given by the user.\n- Timeline instructions: Don't add unnecessary details in the timeline. There can be multiple events happening at the same time so that should also be comma separated. Only what is given by the user and just neatly add it in the JSON keeping in mind that you're doing this for wedding planner details. If an event is supposed to be in timeline but there's no time provided for it, still add it into the JSON just leave the time empty.\n- Vendors instructions: The company name, phone number and email will be given in the same line. Separate them into their respective JSON location. If it says \"Not needed\" next to the vendor, don't add them in the JSON. Only add into JSON when it says \"Finalized and ready\" next to the vendor. If no vendor details are provided, add the key \"note\" followed by \"No vendor details were provided — looks like this will be handled in-house or done DIY style by family and friends.\" into the output JSON.\n- Notes/Details instructions: Keep them short and concise. Don't add any unnecessary details, only add the relevant ones. If there's no need for extra bullet points, don't add them.\n- Locations instructions: Keep them short and concise, no need to add extra details other than whats given by the user, just neat it up it needed.\n- Wedding name & time instructions: Bride name first followed by \"&\" DO NOT USE \"and\" and then the groom's name.\n\nNOTE: I want output in this exact JSON format, don't even add \"```json\" comments in it. JUST output the JSON and that's it. Increase the size when there is more data but keep the format the same. I have also added some example data into the JSON for your help.\n\nExample JSON:\n{\\n  \"timeline\": [\\n    {\\n      \"time\": \"09:00 AM\",\\n      \"data\": [\\n        \"Bride gets ready\",\\n        \"Wedding preparation begins\"\\n      ]\\n    },\\n    {\\n      \"time\": \"10:00 AM\",\\n      \"data\": [\\n        \"Couple's first look\"\\n      ]\\n    }\\n  ],\\n  \"vendors\": [\\n    {\\n      \"header\": \"DJ or Band\",\\n      \"name\": \"DJ Megladon\",\\n      \"phone\": \"+1234567890\",\\n      \"email\": \"megladon@gmail.com\"\\n    },\\n    {\\n      \"header\": \"Photographer\",\\n      \"name\": \"Moments Pictures\",\\n      \"phone\": \"+1234567890\",\\n      \"email\": \"momentspictures@gmail.com\"\\n    }\\n  ],\\n  \"notes_details\": [\\n    \"RSVP: Nawaz, Malik, Shuja, Ismail\",\\n    \"Ring bearer: Bride niece\",\\n    \"Rooftop wedding ceremony\"\\n  ],\\n  \"locations\": [\\n    {\\n      \"header\": \"Wedding Location\",\\n      \"address\": \"Dubai - Al Nahda\"\\n    },\\n    {\\n      \"header\": \"Bride Preparation Location\",\\n      \"address\": \"Dubai, Hassani Tower 11 room 705- Al Nahda\"\\n    }\\n  ],\\n  \"wedding_name_time\": {\\n    \"names\": \"John & Doe\",\\n    \"date\": \"12/13/2025\",\\n    \"time\": \"4:30 PM\"\\n  }\\n}\\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -2912,
+        480
+      ],
+      "id": "0793cee4-4a7d-4948-8b6e-93160b52629d",
+      "name": "AI Agent",
+      "notesInFlow": true,
+      "notes": "ChatGPT Model 5"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-chat-latest",
+          "mode": "list",
+          "cachedResultName": "gpt-5-chat-latest"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -2992,
+        736
+      ],
+      "id": "56d97024-4172-4997-a565-d78dba0bc0cd",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Q9s2sph4kZzA4f6N",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "{add ID here}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bCDCGZ3XG9vf8dcpXywnRzTKD06b4kFeKC9GKzwH_Rw/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Submission ID",
+              "lookupValue": "={{ $json.body.data.submissionId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -3168,
+        480
+      ],
+      "id": "f6f017c1-5e55-447c-8cf6-a80df581d900",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "aZXg7zZymTTsD6Hm",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## Vendors update for Slide 1",
+        "height": 240,
+        "width": 448,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1152,
+        240
+      ],
+      "id": "ab68d365-3a7d-4cdf-8994-794ff906fdcf",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## **Vendors** case 1\nThere are more than 6 vendors included. Two text boxes (left & right) included",
+        "height": 384,
+        "width": 656,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1344,
+        160
+      ],
+      "typeVersion": 1,
+      "id": "fa61bcca-a779-4a88-a586-d654b3e6a450",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## **Vendors** case 2\nThere are less than 6 vendors included. Only one text box included",
+        "height": 384,
+        "width": 672,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1360,
+        784
+      ],
+      "typeVersion": 1,
+      "id": "cf7f53ba-c85c-453d-ab77-9d5be783b253",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Vendors update for Slide 2",
+        "height": 224,
+        "width": 464,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1168,
+        896
+      ],
+      "id": "5e94853d-e2fa-4ee9-ae97-91205980f553",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Timeline update for either slide",
+        "height": 432,
+        "width": 464,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        80,
+        304
+      ],
+      "typeVersion": 1,
+      "id": "e1f5f2cc-f1c6-4463-ba83-3d2cb8401f4e",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "jsCode": "// === Timeline Processing Script ===\n// Input: timelineData from previous node\n// Output: { left, middle, right }\n\nconst timelineData = $('Setvar - JSON to Separate Obj').first().json.timeline || $input.all()[0].json.timeline;\n\nif (!Array.isArray(timelineData)) {\n  throw new Error('timelineData must be an array.');\n}\n\n// Helper to split text into chunks of <= 17 chars\nfunction splitIntoSegments(text, maxLen = 17) {\n  text = String(text || '').trim();\n  if (text.length === 0) return [];\n  if (!/\\s/.test(text) && text.length > maxLen) return [text];\n  const words = text.split(/\\s+/);\n  const segments = [];\n  let current = '';\n  for (const word of words) {\n    if (current === '') {\n      current = word;\n    } else if ((current + ' ' + word).length <= maxLen) {\n      current += ' ' + word;\n    } else {\n      segments.push(current);\n      current = word;\n    }\n  }\n  if (current) segments.push(current);\n  return segments;\n}\n\n// Build key/value list similar to UiPath Dictionary\nconst List_JSON = [];\nfor (let i = 0; i < timelineData.length; i++) {\n  const item = timelineData[i];\n  const key = (item.time && String(item.time).trim()) || `Event ${i + 1}`;\n  const values = Array.isArray(item.data)\n    ? item.data.map(v => String(v || '').trim())\n    : [];\n  List_JSON.push({ key, values });\n}\n\n// Initialize final boxes\nlet LeftBox = '';\nlet MiddleBox = '';\nlet RightBox = '';\nlet Check_OddEven = true;\n\n// Function to append value(s) to a temp box using \"$\" delimiters\nfunction appendValue(tempStr, value) {\n  const parts = splitIntoSegments(value, 17);\n  for (const part of parts) {\n    tempStr += part.trim() + '$';\n  }\n  if (parts.length === 0) tempStr += '$';\n  return tempStr;\n}\n\n// Process each timeline entry\nfor (const { key, values } of List_JSON) {\n  let Temp_LeftBox = '';\n  let Temp_RightBox = '';\n  let Temp_MiddleBox = key;\n\n  if (values.length <= 1) {\n    const val = values[0] || '';\n\n    if (Check_OddEven) {\n      Temp_LeftBox = appendValue(Temp_LeftBox, val);\n    } else {\n      Temp_RightBox = appendValue(Temp_RightBox, val);\n    }\n    Check_OddEven = !Check_OddEven;\n\n  } else {\n    for (const v of values) {\n      if (Check_OddEven) {\n        Temp_LeftBox = appendValue(Temp_LeftBox, v);\n      } else {\n        Temp_RightBox = appendValue(Temp_RightBox, v);\n      }\n      Check_OddEven = !Check_OddEven;\n    }\n  }\n\n  // === Balance out spacing scope ===\n  let countLeft = (Temp_LeftBox.match(/\\$/g) || []).length;\n  let countRight = (Temp_RightBox.match(/\\$/g) || []).length;\n\n  // Phase 1: equalize counts\n  if (countLeft > countRight) {\n    Temp_RightBox += '$'.repeat(countLeft - countRight);\n    countRight = countLeft;\n  } else if (countRight > countLeft) {\n    Temp_LeftBox += '$'.repeat(countRight - countLeft);\n    countLeft = countRight;\n  }\n\n  // Phase 2: check long segments\n  const leftSegs = Temp_LeftBox.split('$').filter(Boolean);\n  const rightSegs = Temp_RightBox.split('$').filter(Boolean);\n\n  for (const seg of leftSegs) {\n    if (seg.trim().length > 17) {\n      Temp_RightBox += '$';\n      countRight++;\n    }\n  }\n  for (const seg of rightSegs) {\n    if (seg.trim().length > 17) {\n      Temp_LeftBox += '$';\n      countLeft++;\n    }\n  }\n\n  // Add equal spaces in middle box\n  const rowCount = Math.max(countLeft, countRight) || 1;\n  Temp_MiddleBox += '$'.repeat(rowCount);\n\n  // Append to final boxes\n  LeftBox += Temp_LeftBox;\n  MiddleBox += Temp_MiddleBox;\n  RightBox += Temp_RightBox;\n}\n\n// Replace \"$\" with newlines and lowercase middle box\nconst left = LeftBox.replace(/\\$/g, '\\n');\nconst middle = MiddleBox.replace(/\\$/g, '\\n').toLowerCase();\nconst right = RightBox.replace(/\\$/g, '\\n');\n\n// Return result to n8n\nreturn [{ json: { left, middle, right } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        144,
+        576
+      ],
+      "id": "f573c058-6936-4327-9b80-ba6d50acae0d",
+      "name": "Code - Timeline JS"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $('Merge - ID').item.json.ID }}:batchUpdate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP - Slides API Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.Request_JSON).replace(/\\\\\\\\n/g, \"\\\\n\") }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        368,
+        384
+      ],
+      "id": "d92f1281-589b-40c2-be3a-57365d005b97",
+      "name": "HTTP - Timeline"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "70179927-9bb1-4bcf-b0c5-9d296bc89bbb",
+              "name": "Request_JSON.requests[1].insertText.text",
+              "value": "={{ $('Code - Timeline JS').item.json.left }}",
+              "type": "string"
+            },
+            {
+              "id": "2b8fb81b-a83a-4dc6-93ce-34ebd6b1bec9",
+              "name": "Request_JSON.requests[4].insertText.text",
+              "value": "={{ $('Code - Timeline JS').item.json.middle }}",
+              "type": "string"
+            },
+            {
+              "id": "15147a56-df7d-48a9-8968-7850a0b24df7",
+              "name": "Request_JSON.requests[7].insertText.text",
+              "value": "={{ $('Code - Timeline JS').item.json.right }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        144,
+        384
+      ],
+      "id": "0693fe02-01ca-4f83-836b-ccfc2adb344b",
+      "name": "Setvar - Timeline Request JSON"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c6f2face-76f0-4a11-b86c-41ad938cd5f9",
+              "name": "Request_JSON",
+              "value": "{\n    \"requests\": [\n        {\n            \"deleteText\": {\n                \"objectId\": \"g374a57b30b7_3_1\",\n                \"textRange\": {\n                    \"type\": \"ALL\"\n                }\n            }\n\n        },\n        {\n            \"insertText\": {\n                \"objectId\": \"g374a57b30b7_3_1\",\n                \"insertionIndex\": 0,\n                \"text\": \"Text 1\"\n            }\n        },\n        {\n            \"updateTextStyle\": {\n                \"objectId\": \"g374a57b30b7_3_1\",\n                \"style\": {\n                    \"fontFamily\": \"JetBrains Mono\",\n                    \"foregroundColor\": {\n                        \"opaqueColor\": {\n                            \"themeColor\": \"DARK2\"\n                        }\n                    },\n                    \"bold\": false,\n                    \"italic\": false,\n                    \"fontSize\": {\n                        \"magnitude\": 11,\n                        \"unit\": \"PT\"\n                    },\n                    \"weightedFontFamily\": {\n                        \"fontFamily\": \"JetBrains Mono\",\n                        \"weight\": 200\n                    }\n                },\n                \"textRange\": {\n                    \"type\": \"ALL\"\n                },\n                \"fields\": \"*\"\n            }\n        },\n        {\n            \"deleteText\": {\n                \"objectId\": \"g37eed000207_0_1\",\n                \"textRange\": {\n                    \"type\": \"ALL\"\n                }\n            }\n\n        },\n        {\n            \"insertText\": {\n                \"objectId\": \"g37eed000207_0_1\",\n                \"insertionIndex\": 0,\n                \"text\": \"Text 2\"\n            }\n        },\n        {\n            \"updateTextStyle\": {\n                \"objectId\": \"g37eed000207_0_1\",\n                \"style\": {\n                    \"fontFamily\": \"Lexend\",\n                    \"foregroundColor\": {\n                        \"opaqueColor\": {\n                            \"themeColor\": \"DARK2\"\n                        }\n                    },\n                    \"bold\": false,\n                    \"italic\": false,\n                    \"fontSize\": {\n                        \"magnitude\": 11,\n                        \"unit\": \"PT\"\n                    },\n                    \"weightedFontFamily\": {\n                        \"fontFamily\": \"Lexend\",\n                        \"weight\": 300\n                    }\n                },\n                \"textRange\": {\n                    \"type\": \"ALL\"\n                },\n                \"fields\": \"*\"\n            }\n        },\n        {\n            \"deleteText\": {\n                \"objectId\": \"g37eed000207_0_0\",\n                \"textRange\": {\n                    \"type\": \"ALL\"\n                }\n            }\n\n        },\n        {\n            \"insertText\": {\n                \"objectId\": \"g37eed000207_0_0\",\n                \"insertionIndex\": 0,\n                \"text\": \"Text 3\"\n            }\n        },\n        {\n            \"updateTextStyle\": {\n                \"objectId\": \"g37eed000207_0_0\",\n                \"style\": {\n                    \"fontFamily\": \"JetBrains Mono\",\n                    \"foregroundColor\": {\n                        \"opaqueColor\": {\n                            \"themeColor\": \"DARK2\"\n                        }\n                    },\n                    \"bold\": false,\n                    \"italic\": false,\n                    \"fontSize\": {\n                        \"magnitude\": 11,\n                        \"unit\": \"PT\"\n                    },\n                    \"weightedFontFamily\": {\n                        \"fontFamily\": \"JetBrains Mono\",\n                        \"weight\": 200\n                    }\n                },\n                \"textRange\": {\n                    \"type\": \"ALL\"\n                },\n                \"fields\": \"*\"\n            }\n        }\n    ]\n}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        368,
+        544
+      ],
+      "id": "73867ee7-05b1-49bc-9393-a16b200d759d",
+      "name": "Setvar - Timeline JSON Template"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8f27c386-181e-467b-813f-01fee4f08d21",
+              "name": "={{ $('Setvar - JSON to Separate Obj').item.json.Presentation_ID }}",
+              "value": "={{ $('Setvar - Presentation ID Slide 1').item.json.ID }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -400,
+        320
+      ],
+      "id": "b3adaf70-aba4-4be4-91d5-7e034e4e80a3",
+      "name": "Setvar - Update ID Slide 1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8f27c386-181e-467b-813f-01fee4f08d21",
+              "name": "={{ $('Setvar - JSON to Separate Obj').item.json.Presentation_ID }}",
+              "value": "={{ $('Setvar - Presentation ID Slide 2').item.json.ID }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -400,
+        944
+      ],
+      "id": "695a6ff4-991b-477e-bd3f-aca5c4646ff6",
+      "name": "Setvar - Update ID Slide 2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $('Setvar - Presentation ID Slide 1').item.json.ID }}:batchUpdate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP - Slides API Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.left) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -848,
+        320
+      ],
+      "id": "b057a21a-5cc4-46cc-8acc-d90dfcdf3581",
+      "name": "HTTP - Vendors Left Box"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $('Setvar - Presentation ID Slide 1').item.json.ID }}:batchUpdate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP - Slides API Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($('Code - Vendors JS Left/Right').item.json.right) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -624,
+        320
+      ],
+      "id": "444ccf61-120a-491f-b665-70fb1681cf6d",
+      "name": "HTTP - Vendors Right Box"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $('Setvar - Presentation ID Slide 2').item.json.ID }}:batchUpdate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP - Slides API Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.middle) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -848,
+        944
+      ],
+      "id": "0b369afc-6240-47bc-87a3-36600418dd81",
+      "name": "HTTP - Vendors Middle Box"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node version of timeline_processor_calibrated.js\n// Supports left/right for >6 vendors and middle for <=6 vendors\n\nconst vendors = $('Setvar - JSON to Separate Obj').first().json.vendors || [];\n\nfunction deepClone(obj) {\n    return JSON.parse(JSON.stringify(obj));\n}\n\nfunction buildMarkersSingleColumn(vendors) {\n    let cumulative = 0;\n    const markers = [];\n    let finalPieces = [];\n\n    for (const v of vendors) {\n        const header = (v.header ?? '').toString().trim();\n        if (!header) continue;\n\n        const headerSeg = header + '\\n';\n        const headerStart = cumulative;\n        const headerEndExclusive = headerStart + headerSeg.length;\n        markers.push({ content: header, type: 'header', startIndex: headerStart, endIndexExclusive: headerEndExclusive });\n        finalPieces.push(headerSeg);\n        cumulative = headerEndExclusive;\n\n        if (v.name != null) {\n            const seg = v.name.toString().trim() + '\\n';\n            markers.push({ content: v.name, type: 'name', startIndex: cumulative, endIndexExclusive: cumulative + seg.length });\n            finalPieces.push(seg);\n            cumulative += seg.length;\n        }\n        if (v.phone != null) {\n            const seg = v.phone.toString().trim() + '\\n';\n            markers.push({ content: v.phone, type: 'phone', startIndex: cumulative, endIndexExclusive: cumulative + seg.length });\n            finalPieces.push(seg);\n            cumulative += seg.length;\n        }\n        if (v.email != null) {\n            const seg = v.email.toString().trim() + '\\n';\n            markers.push({ content: v.email, type: 'email', startIndex: cumulative, endIndexExclusive: cumulative + seg.length });\n            finalPieces.push(seg);\n            cumulative += seg.length;\n        }\n\n        // Vendor separator newline\n        finalPieces.push('\\n');\n        cumulative += 1;\n    }\n\n    return { finalInsertedText: finalPieces.join(''), markers };\n}\n\nfunction buildMarkersTwoColumn(vendors) {\n    const leftVendors = [];\n    const rightVendors = [];\n    let leftTurn = true;\n    for (const v of vendors) {\n        if (leftTurn) leftVendors.push(v);\n        else rightVendors.push(v);\n        leftTurn = !leftTurn;\n    }\n    return {\n        left: buildMarkersSingleColumn(leftVendors),\n        right: buildMarkersSingleColumn(rightVendors)\n    };\n}\n\nfunction processTextAndBuildRequests(baseRequestsArray, finalInsertedText, markers, objectIdForStyle = 'g374a57b30b7_3_3') {\n    const mainJSON = { requests: deepClone(baseRequestsArray) };\n    let inserted = false;\n\n    for (const req of mainJSON.requests) {\n        if (req.insertText && typeof req.insertText.text !== 'undefined') {\n            req.insertText.text = finalInsertedText;\n            inserted = true;\n            break;\n        }\n    }\n    if (!inserted) {\n        mainJSON.requests.push({ insertText: { objectId: objectIdForStyle, insertionIndex: 0, text: finalInsertedText } });\n    }\n\n    const emailRegex = /[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}/;\n    for (const m of markers) {\n        const startIndex = m.startIndex;\n        const endIndex = m.endIndexExclusive;\n\n        if (m.type === 'email' || emailRegex.test(m.content)) {\n            const extractedEmail = (m.content.match(emailRegex) || [])[0] || m.content;\n            mainJSON.requests.push({\n                updateTextStyle: {\n                    objectId: objectIdForStyle,\n                    textRange: { type: 'FIXED_RANGE', startIndex, endIndex: endIndex },\n                    style: {\n                        fontFamily: 'Lexend',\n                        fontSize: { magnitude: 10, unit: 'PT' },\n                        weightedFontFamily: { fontFamily: 'Lexend', weight: 200 },\n                        foregroundColor: { opaqueColor: { themeColor: 'HYPERLINK' } },\n                        underline: true,\n                        link: { url: 'mailto:' + extractedEmail }\n                    },\n                    fields: 'fontFamily,fontSize,weightedFontFamily,foregroundColor,underline,link'\n                }\n            });\n        } else {\n            const weight = m.type === 'header' ? 300 : 200;\n            mainJSON.requests.push({\n                updateTextStyle: {\n                    objectId: objectIdForStyle,\n                    textRange: { type: 'FIXED_RANGE', startIndex, endIndex: endIndex },\n                    style: {\n                        fontFamily: 'Lexend',\n                        fontSize: { magnitude: 11, unit: 'PT' },\n                        weightedFontFamily: { fontFamily: 'Lexend', weight },\n                        foregroundColor: { opaqueColor: { themeColor: 'DARK2' } }\n                    },\n                    fields: 'fontFamily,fontSize,weightedFontFamily,foregroundColor'\n                }\n            });\n        }\n    }\n\n    return mainJSON;\n}\n\n// ---------------- Main flow ----------------\nlet output;\n\nif (vendors.length <= 6) {\n    // single-column -> output under key \"middle\"\n    const { finalInsertedText, markers } = buildMarkersSingleColumn(vendors);\n\n    const baseRequests = [\n        { deleteText: { objectId: 'g374a57b30b7_3_3', textRange: { type: 'ALL' } } },\n        { insertText: { objectId: 'g374a57b30b7_3_3', insertionIndex: 0, text: 'placeholder' } },\n        { updateParagraphStyle: { objectId: 'g374a57b30b7_3_3', textRange: { type: 'ALL' }, style: { alignment: 'CENTER', lineSpacing: 90 }, fields: 'alignment,lineSpacing' } }\n    ];\n\n    output = { middle: processTextAndBuildRequests(baseRequests, finalInsertedText, markers, 'g374a57b30b7_3_3') };\n} else {\n    // two-column\n    const { left, right } = buildMarkersTwoColumn(vendors);\n\n    const baseLeft = [\n        { deleteText: { objectId: 'g374a57b30b7_3_3', textRange: { type: 'ALL' } } },\n        { insertText: { objectId: 'g374a57b30b7_3_3', insertionIndex: 0, text: 'placeholderLeft' } },\n        { updateParagraphStyle: { objectId: 'g374a57b30b7_3_3', textRange: { type: 'ALL' }, style: { alignment: 'CENTER', lineSpacing: 90 }, fields: 'alignment,lineSpacing' } }\n    ];\n\n    const baseRight = [\n        { deleteText: { objectId: 'g37fb514adf5_0_1', textRange: { type: 'ALL' } } },\n        { insertText: { objectId: 'g37fb514adf5_0_1', insertionIndex: 0, text: 'placeholderRight' } },\n        { updateParagraphStyle: { objectId: 'g37fb514adf5_0_1', textRange: { type: 'ALL' }, style: { alignment: 'CENTER', lineSpacing: 90 }, fields: 'alignment,lineSpacing' } }\n    ];\n\n    const leftJSON = processTextAndBuildRequests(baseLeft, left.finalInsertedText, left.markers, 'g374a57b30b7_3_3');\n    const rightJSON = processTextAndBuildRequests(baseRight, right.finalInsertedText, right.markers, 'g37fb514adf5_0_1');\n\n    output = { left: leftJSON, right: rightJSON };\n}\n\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1072,
+        944
+      ],
+      "id": "5696d439-7424-48b5-a604-bf4922338f1b",
+      "name": "Code - Vendors JS Middle"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node version of timeline_processor_calibrated.js\n// Uses vendors from Set node and returns final JSON objects for single or two-column mode\n\n// Get vendors from input JSON (coming from Set node)\nconst vendors = $('Setvar - JSON to Separate Obj').first().json.vendors || [];\n\nfunction deepClone(obj) {\n    return JSON.parse(JSON.stringify(obj));\n}\n\nfunction buildMarkersSingleColumn(vendors) {\n    let cumulative = 0;\n    const markers = [];\n    let finalPieces = [];\n\n    for (const v of vendors) {\n        const header = (v.header ?? '').toString().trim();\n        if (!header) continue;\n\n        const headerSeg = header + '\\n';\n        const headerStart = cumulative;\n        const headerEndExclusive = headerStart + headerSeg.length;\n        markers.push({ content: header, type: 'header', startIndex: headerStart, endIndexExclusive: headerEndExclusive });\n        finalPieces.push(headerSeg);\n        cumulative = headerEndExclusive;\n\n        if (v.name != null) {\n            const seg = v.name.toString().trim() + '\\n';\n            markers.push({ content: v.name, type: 'name', startIndex: cumulative, endIndexExclusive: cumulative + seg.length });\n            finalPieces.push(seg);\n            cumulative += seg.length;\n        }\n        if (v.phone != null) {\n            const seg = v.phone.toString().trim() + '\\n';\n            markers.push({ content: v.phone, type: 'phone', startIndex: cumulative, endIndexExclusive: cumulative + seg.length });\n            finalPieces.push(seg);\n            cumulative += seg.length;\n        }\n        if (v.email != null) {\n            const seg = v.email.toString().trim() + '\\n';\n            markers.push({ content: v.email, type: 'email', startIndex: cumulative, endIndexExclusive: cumulative + seg.length });\n            finalPieces.push(seg);\n            cumulative += seg.length;\n        }\n\n        // Vendor separator newline\n        finalPieces.push('\\n');\n        cumulative += 1;\n    }\n\n    return { finalInsertedText: finalPieces.join(''), markers };\n}\n\nfunction buildMarkersTwoColumn(vendors) {\n    const leftVendors = [];\n    const rightVendors = [];\n    let leftTurn = true;\n    for (const v of vendors) {\n        if (leftTurn) leftVendors.push(v);\n        else rightVendors.push(v);\n        leftTurn = !leftTurn;\n    }\n    return {\n        left: buildMarkersSingleColumn(leftVendors),\n        right: buildMarkersSingleColumn(rightVendors)\n    };\n}\n\nfunction processTextAndBuildRequests(baseRequestsArray, finalInsertedText, markers, objectIdForStyle = 'g374a57b30b7_3_3') {\n    const mainJSON = { requests: deepClone(baseRequestsArray) };\n    let inserted = false;\n\n    for (const req of mainJSON.requests) {\n        if (req.insertText && typeof req.insertText.text !== 'undefined') {\n            req.insertText.text = finalInsertedText;\n            inserted = true;\n            break;\n        }\n    }\n    if (!inserted) {\n        mainJSON.requests.push({ insertText: { objectId: objectIdForStyle, insertionIndex: 0, text: finalInsertedText } });\n    }\n\n    const emailRegex = /[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}/;\n    for (const m of markers) {\n        const startIndex = m.startIndex;\n        const endIndex = m.endIndexExclusive;\n\n        if (m.type === 'email' || emailRegex.test(m.content)) {\n            const extractedEmail = (m.content.match(emailRegex) || [])[0] || m.content;\n            mainJSON.requests.push({\n                updateTextStyle: {\n                    objectId: objectIdForStyle,\n                    textRange: { type: 'FIXED_RANGE', startIndex, endIndex: endIndex },\n                    style: {\n                        fontFamily: 'Lexend',\n                        fontSize: { magnitude: 9, unit: 'PT' },\n                        weightedFontFamily: { fontFamily: 'Lexend', weight: 200 },\n                        foregroundColor: { opaqueColor: { themeColor: 'HYPERLINK' } },\n                        underline: true,\n                        link: { url: 'mailto:' + extractedEmail }\n                    },\n                    fields: 'fontFamily,fontSize,weightedFontFamily,foregroundColor,underline,link'\n                }\n            });\n        } else {\n            const weight = m.type === 'header' ? 300 : 200;\n            mainJSON.requests.push({\n                updateTextStyle: {\n                    objectId: objectIdForStyle,\n                    textRange: { type: 'FIXED_RANGE', startIndex, endIndex: endIndex },\n                    style: {\n                        fontFamily: 'Lexend',\n                        fontSize: { magnitude: 11, unit: 'PT' },\n                        weightedFontFamily: { fontFamily: 'Lexend', weight },\n                        foregroundColor: { opaqueColor: { themeColor: 'DARK2' } }\n                    },\n                    fields: 'fontFamily,fontSize,weightedFontFamily,foregroundColor'\n                }\n            });\n        }\n    }\n\n    return mainJSON;\n}\n\n// ---------------- Main flow ----------------\nlet output;\n\nif (vendors.length <= 6) {\n    // single-column\n    const { finalInsertedText, markers } = buildMarkersSingleColumn(vendors);\n\n    const baseRequests = [\n        { deleteText: { objectId: 'g374a57b30b7_3_3', textRange: { type: 'ALL' } } },\n        { insertText: { objectId: 'g374a57b30b7_3_3', insertionIndex: 0, text: 'placeholder' } },\n        { updateParagraphStyle: { objectId: 'g374a57b30b7_3_3', textRange: { type: 'ALL' }, style: { alignment: 'CENTER', lineSpacing: 90 }, fields: 'alignment,lineSpacing' } }\n    ];\n\n    output = processTextAndBuildRequests(baseRequests, finalInsertedText, markers, 'g374a57b30b7_3_3');\n} else {\n    // two-column\n    const { left, right } = buildMarkersTwoColumn(vendors);\n\n    const baseLeft = [\n        { deleteText: { objectId: 'g374a57b30b7_3_3', textRange: { type: 'ALL' } } },\n        { insertText: { objectId: 'g374a57b30b7_3_3', insertionIndex: 0, text: 'placeholderLeft' } },\n        { updateParagraphStyle: { objectId: 'g374a57b30b7_3_3', textRange: { type: 'ALL' }, style: { alignment: 'CENTER', lineSpacing: 90 }, fields: 'alignment,lineSpacing' } }\n    ];\n\n    const baseRight = [\n        { deleteText: { objectId: 'g37fb514adf5_0_1', textRange: { type: 'ALL' } } },\n        { insertText: { objectId: 'g37fb514adf5_0_1', insertionIndex: 0, text: 'placeholderRight' } },\n        { updateParagraphStyle: { objectId: 'g37fb514adf5_0_1', textRange: { type: 'ALL' }, style: { alignment: 'CENTER', lineSpacing: 90 }, fields: 'alignment,lineSpacing' } }\n    ];\n\n    const leftJSON = processTextAndBuildRequests(baseLeft, left.finalInsertedText, left.markers, 'g374a57b30b7_3_3');\n    const rightJSON = processTextAndBuildRequests(baseRight, right.finalInsertedText, right.markers, 'g37fb514adf5_0_1');\n\n    output = { left: leftJSON, right: rightJSON };\n}\n\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1072,
+        320
+      ],
+      "id": "7fe216a4-7fdf-4196-ad77-ebdf9f116c57",
+      "name": "Code - Vendors JS Left/Right"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d68ead94-cf49-4628-96bc-21dc9152cbc3",
+              "name": "={{ $('Setvar - JSON to Separate Obj').item.json.Presentation_ID }}",
+              "value": "{SLIDE ID}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1296,
+        320
+      ],
+      "id": "6291a909-7bb8-4f75-b5b2-395cc0e07632",
+      "name": "Setvar - Presentation ID Slide 1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d68ead94-cf49-4628-96bc-21dc9152cbc3",
+              "name": "={{ $('Setvar - JSON to Separate Obj').item.json.Presentation_ID }}",
+              "value": "{SLIDE ID}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1312,
+        944
+      ],
+      "id": "1e3c79e1-1163-40b6-b3d2-f013bcb158f5",
+      "name": "Setvar - Presentation ID Slide 2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "520621f3-f3f5-4fe2-8506-beea8854228d",
+              "leftValue": "={{ $('Setvar - Edit Fields').item.json.vendors.length }}",
+              "rightValue": 6,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1600,
+        640
+      ],
+      "id": "fbce84a3-cfc5-4faf-a747-95b49580429b",
+      "name": "If - Slide 1 OR 2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d3f9845f-3fed-45a1-94a0-428ab1377b02",
+              "name": "timeline",
+              "value": "={{ $('AI Agent').item.json['output'].parseJson().timeline }}",
+              "type": "object"
+            },
+            {
+              "id": "7b02c659-46fe-4fe2-b2a1-63040874a9f3",
+              "name": "vendors",
+              "value": "={{ $('AI Agent').item.json['output'].parseJson().vendors }}",
+              "type": "object"
+            },
+            {
+              "id": "607bec4b-0b7e-4718-87ee-c8fbc5b6449f",
+              "name": "locations",
+              "value": "={{ $('AI Agent').item.json['output'].parseJson().locations }}",
+              "type": "object"
+            },
+            {
+              "id": "ee21da57-31d1-424a-91ce-c57c0a4c9eb7",
+              "name": "notes_details",
+              "value": "={{ $('AI Agent').item.json['output'].parseJson().notes_details }}",
+              "type": "object"
+            },
+            {
+              "id": "66d187b2-9633-4c13-9c60-68dbe4f92645",
+              "name": "wedding_name_time",
+              "value": "={{ $('AI Agent').item.json['output'].parseJson().wedding_name_time }}",
+              "type": "object"
+            },
+            {
+              "id": "f08fd328-00e4-43d3-bad6-ef05ca3fded1",
+              "name": "Presentation_ID",
+              "value": "ID",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2032,
+        544
+      ],
+      "id": "97b3c34c-e877-4e39-8b10-d7fb3003763c",
+      "name": "Setvar - JSON to Separate Obj"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://oauth2.googleapis.com/token",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "client_id",
+              "value": "{client_id}"
+            },
+            {
+              "name": "grant_type",
+              "value": "refresh_token"
+            },
+            {
+              "name": "refresh_token",
+              "value": "{refresh_token}"
+            },
+            {
+              "name": "client_secret",
+              "value": "{client_secret}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2256,
+        544
+      ],
+      "id": "a2aa9762-2f23-4861-8e62-00691f05c967",
+      "name": "HTTP - Slides API Access Token"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2496,
+        352
+      ],
+      "id": "2b1db4b5-d1c1-4276-844c-33aee153b9e1",
+      "name": "Setvar - Edit Fields"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -80,
+        592
+      ],
+      "id": "cce60e9c-dda3-46eb-a0ff-45e10257d072",
+      "name": "Merge - ID"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $('Merge - ID').item.json.ID }}:batchUpdate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP - Slides API Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.notes_details) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        864,
+        576
+      ],
+      "id": "02b3b035-3b11-4ae8-a339-1fa2f4e8d957",
+      "name": "HTTP - Notes_details"
+    },
+    {
+      "parameters": {
+        "content": "## Notes_Details update for either slide",
+        "height": 432,
+        "width": 448,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        592,
+        304
+      ],
+      "typeVersion": 1,
+      "id": "cf6c0256-9d21-4f27-b48a-13f20a820481",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "jsCode": "// --- Step 1: Get notes_details from n8n context ---\nconst inputData = $('AI Agent').first().json.output;\n\nfunction buildStrTextFromNotes(outObj) {\n  let str_text = '';\n  const notes = outObj && outObj.notes_details;\n\n  if (Array.isArray(notes)) {\n    notes.forEach((token) => {\n      const tok = token === null || token === undefined ? '' : String(token).trim();\n      // add bullet even if tok is empty (mirrors original behaviour), change if needed\n      str_text += '▸ ' + tok + '\\n';\n    });\n  } else if (typeof notes === 'string') {\n    str_text = '▸ ' + notes.trim() + '\\n';\n  } else if (notes && typeof notes === 'object') {\n    // if it's an object, iterate values\n    Object.values(notes).forEach((val) => {\n      const v = val === null || val === undefined ? '' : String(val).trim();\n      str_text += '▸  ' + v + '\\n';\n    });\n  } else {\n    // no notes_details present; keep str_text empty\n  }\n\n  return str_text.trim(); // final trim to remove trailing newline/space\n}\n\nfunction makeMainJsonTemplate() {\n  return {\n    requests: [\n      {\n        deleteText: {\n          objectId: 'g374a57b30b7_3_4',\n          textRange: { type: 'ALL' }\n        }\n      },\n      {\n        insertText: {\n          objectId: 'g374a57b30b7_3_4',\n          insertionIndex: 0,\n          text: '' // we will fill this with str_text\n        }\n      },\n      {\n        updateTextStyle: {\n          objectId: 'g374a57b30b7_3_4',\n          style: {\n            fontFamily: 'Lexend',\n            foregroundColor: { opaqueColor: { themeColor: 'DARK2' } },\n            bold: false,\n            italic: false,\n            fontSize: { magnitude: 12, unit: 'PT' },\n            weightedFontFamily: { fontFamily: 'Lexend', weight: 300 }\n          },\n          textRange: { type: 'ALL' },\n          fields: '*'\n        }\n      }\n    ]\n  };\n}\n\n// --- Main execution ---\ntry {\n  let out_JObj;\n  \n  // Handle different input types (string or already parsed object)\n  if (typeof inputData === 'string') {\n    // Clean and parse if input is string (like original file content)\n    let raw = inputData.replace(/```json/gi, '').replace(/```/g, '').trim();\n    out_JObj = JSON.parse(raw);\n  } else {\n    // Input is already an object\n    out_JObj = inputData;\n  }\n\n  // 2. Build str_text from notes_details\n  const str_text = buildStrTextFromNotes(out_JObj);\n\n  // 3. Create main_JSON and insert str_text into requests[1].insertText.text\n  const main_JSON = makeMainJsonTemplate();\n\n  // Ensure requests and the insertText object exist\n  if (!Array.isArray(main_JSON.requests)) main_JSON.requests = [];\n  if (!main_JSON.requests[1]) {\n    // create a default insertText slot if missing\n    main_JSON.requests[1] = {\n      insertText: {\n        objectId: 'g374a57b30b7_3_4',\n        insertionIndex: 0,\n        text: ''\n      }\n    };\n  } else if (!main_JSON.requests[1].insertText) {\n    main_JSON.requests[1].insertText = {\n      objectId: 'g374a57b30b7_3_4',\n      insertionIndex: 0,\n      text: ''\n    };\n  }\n\n  // Insert the built text\n  main_JSON.requests[1].insertText.text = str_text;\n\n  // For n8n logging\n  console.log('=== Built str_text ===');\n  console.log(str_text);\n  console.log('=== main_JSON preview ===');\n  console.log(JSON.stringify(main_JSON, null, 2));\n\n  // Return the result for n8n\n  return {notes_details: main_JSON};\n\n} catch (err) {\n  console.error('Error:', err.message);\n  // In n8n, we can throw an error to stop the workflow\n  throw new Error(`Processing failed: ${err.message}`);\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        656,
+        384
+      ],
+      "id": "261bb5cb-b9a7-4080-b830-8ee5a62c8a24",
+      "name": "Code - Notes_details"
+    },
+    {
+      "parameters": {
+        "jsCode": "// --- Step 1: Get locations data from n8n context ---\nconst inputData = $('AI Agent').first().json.output;\nconst KEY = 'locations'; // Fixed key for locations as in original\n\n// If your target API uses 1-based text indexes instead of 0-based, set this to 1.\n// (Many Google APIs use 0-based, but if ranges don't apply, try setting to 1.)\nconst INDEX_OFFSET = 0;\n\n/**\n * Remove the word \"location\" (case-insensitive) from a header in a smart way.\n * Handles:\n *   \"Location - Main Hall\" -> \"Main Hall\"\n *   \"Ceremony Location\" -> \"Ceremony\"\n *   \"Main Location Hall\" -> \"Main Hall\"\n */\nfunction cleanHeader(header) {\n  if (!header) return '';\n  let s = String(header).trim();\n\n  // If header starts with \"location\" followed by separators: take the rest\n  let mStart = s.match(/^location[\\s\\-\\–\\—:]+(.+)$/i);\n  if (mStart && mStart[1]) return mStart[1].trim();\n\n  // If header ends with \"location\" preceded by optional separators: take the front\n  let mEnd = s.match(/^(.+?)[\\s\\-\\–\\—:]*location$/i);\n  if (mEnd && mEnd[1]) return mEnd[1].trim();\n\n  // Otherwise remove standalone \"location\" anywhere, tidy separators and spaces\n  s = s.replace(/\\blocation\\b/ig, '');                     // remove word\n  s = s.replace(/^[\\s\\-\\–\\—:,\\|]+|[\\s\\-\\–\\—:,\\|]+$/g, '');  // trim separators at ends\n  s = s.replace(/[\\s\\-\\–\\—:,\\|]{2,}/g, ' ');               // collapse repeated separators/spaces\n  return s.trim();\n}\n\n/**\n * Build the string to insert and compute style ranges for headers and addresses.\n * Returns { text, ranges } where ranges = [{ startIndex, endIndex, weight }, ...]\n */\nfunction buildTextAndRangesForKey(obj, key) {\n  const data = obj && obj[key];\n  let text = '';\n  const ranges = [];\n  let cursor = 0; // running character index in text (0-based by default)\n\n  if (data === undefined || data === null) {\n    return { text: '', ranges: [] };\n  }\n\n  const bullet = '▸ ';\n  const separator = ' - ';\n\n  function pushLine(line, headerRange, addressRange) {\n    text += line;\n    // record ranges (only if non-empty and valid)\n    if (headerRange && headerRange.length > 0) {\n      ranges.push({ startIndex: headerRange[0], endIndex: headerRange[1], weight: 400 });\n    }\n    if (addressRange && addressRange.length > 0) {\n      ranges.push({ startIndex: addressRange[0], endIndex: addressRange[1], weight: 300 });\n    }\n    cursor += line.length;\n  }\n\n  function normalizePrimitive(x) {\n    return (x === null || x === undefined) ? '' : String(x).trim();\n  }\n\n  if (Array.isArray(data)) {\n    for (const item of data) {\n      if (item === null || item === undefined) {\n        // empty bullet\n        pushLine(bullet + '\\n', null, null);\n        continue;\n      }\n\n      if (typeof item === 'string' || typeof item === 'number' || typeof item === 'boolean') {\n        const val = normalizePrimitive(item);\n        // treat as address-like primitive\n        const line = bullet + val + '\\n';\n        const aStart = cursor + bullet.length;\n        const aEnd = aStart + val.length;\n        pushLine(line, null, val.length ? [aStart, aEnd] : null);\n        continue;\n      }\n\n      if (Array.isArray(item)) {\n        // flatten simple arrays\n        const flat = item.every(x => ['string', 'number', 'boolean'].includes(typeof x));\n        const val = flat ? item.map(String).map(s => s.trim()).join(', ') : JSON.stringify(item);\n        const line = bullet + val + '\\n';\n        const aStart = cursor + bullet.length;\n        const aEnd = aStart + val.length;\n        pushLine(line, null, val.length ? [aStart, aEnd] : null);\n        continue;\n      }\n\n      // item is an object: try header + address preference\n      const headerRaw = item.header || item.title || item.name || '';\n      const addressRaw = item.address || item.location || item.value || '';\n\n      const header = cleanHeader(headerRaw);\n      const address = normalizePrimitive(addressRaw);\n\n      if (header && address) {\n        const line = bullet + header + separator + address + '\\n';\n        const hStart = cursor + bullet.length;\n        const hEnd = hStart + header.length;\n        const sepLen = separator.length;\n        const aStart = hEnd + sepLen;\n        const aEnd = aStart + address.length;\n        pushLine(line, [hStart, hEnd], [aStart, aEnd]);\n      } else if (header && !address) {\n        const line = bullet + header + '\\n';\n        const hStart = cursor + bullet.length;\n        const hEnd = hStart + header.length;\n        pushLine(line, [hStart, hEnd], null);\n      } else if (!header && address) {\n        const line = bullet + address + '\\n';\n        const aStart = cursor + bullet.length;\n        const aEnd = aStart + address.length;\n        pushLine(line, null, [aStart, aEnd]);\n      } else {\n        // fallback: flatten object key: value pairs\n        const pairs = Object.entries(item)\n          .filter(([, v]) => v !== null && v !== undefined && String(v).trim() !== '')\n          .map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : String(v).trim()}`);\n        const flat = pairs.join(' | ');\n        const line = bullet + flat + '\\n';\n        const aStart = cursor + bullet.length;\n        const aEnd = aStart + flat.length;\n        pushLine(line, null, flat.length ? [aStart, aEnd] : null);\n      }\n    }\n  } else {\n    // single object/primitive\n    if (typeof data === 'string' || typeof data === 'number' || typeof data === 'boolean') {\n      const val = normalizePrimitive(data);\n      const line = bullet + val + '\\n';\n      const aStart = cursor + bullet.length;\n      const aEnd = aStart + val.length;\n      pushLine(line, null, val.length ? [aStart, aEnd] : null);\n    } else if (typeof data === 'object') {\n      // same object logic as above\n      const headerRaw = data.header || data.title || data.name || '';\n      const addressRaw = data.address || data.location || data.value || '';\n\n      const header = cleanHeader(headerRaw);\n      const address = normalizePrimitive(addressRaw);\n\n      if (header && address) {\n        const line = bullet + header + separator + address + '\\n';\n        const hStart = cursor + bullet.length;\n        const hEnd = hStart + header.length;\n        const aStart = hEnd + separator.length;\n        const aEnd = aStart + address.length;\n        pushLine(line, [hStart, hEnd], [aStart, aEnd]);\n      } else if (header && !address) {\n        const line = bullet + header + '\\n';\n        const hStart = cursor + bullet.length;\n        const hEnd = hStart + header.length;\n        pushLine(line, [hStart, hEnd], null);\n      } else if (!header && address) {\n        const line = bullet + address + '\\n';\n        const aStart = cursor + bullet.length;\n        const aEnd = aStart + address.length;\n        pushLine(line, null, [aStart, aEnd]);\n      } else {\n        const pairs = Object.entries(data)\n          .filter(([, v]) => v !== null && v !== undefined && String(v).trim() !== '')\n          .map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : String(v).trim()}`);\n        const flat = pairs.join(' | ');\n        const line = bullet + flat + '\\n';\n        const aStart = cursor + bullet.length;\n        const aEnd = aStart + flat.length;\n        pushLine(line, null, flat.length ? [aStart, aEnd] : null);\n      }\n    } else {\n      // unknown type: stringify fallback\n      const val = String(data);\n      const line = bullet + val + '\\n';\n      const aStart = cursor + bullet.length;\n      const aEnd = aStart + val.length;\n      pushLine(line, null, [aStart, aEnd]);\n    }\n  }\n\n  // remove trailing newline so final string is neater (ranges are still valid)\n  if (text.endsWith('\\n')) {\n    text = text.slice(0, -1);\n    // NOTE: we don't need to change ranges because ranges were computed relative to content\n    // the trailing newline removal only reduces total length but doesn't alter earlier indices.\n  }\n\n  // apply INDEX_OFFSET to ranges (to support 1-based APIs if needed)\n  const adjustedRanges = ranges.map(r => ({\n    startIndex: r.startIndex + INDEX_OFFSET,\n    endIndex: r.endIndex + INDEX_OFFSET,\n    weight: r.weight\n  }));\n\n  return { text, ranges: adjustedRanges };\n}\n\nfunction makeMainJsonTemplate() {\n  return {\n    requests: [\n      {\n        deleteText: {\n          objectId: 'g374a57b30b7_3_5',\n          textRange: { type: 'ALL' }\n        }\n      },\n      {\n        insertText: {\n          objectId: 'g374a57b30b7_3_5',\n          insertionIndex: 0,\n          text: '' // will be filled\n        }\n      }\n      // We'll append updateTextStyle requests after building the text and ranges\n    ]\n  };\n}\n\n// --- Main execution ---\ntry {\n  let out_JObj;\n  \n  // Handle different input types (string or already parsed object)\n  if (typeof inputData === 'string') {\n    // Clean and parse if input is string (like original file content)\n    let raw = inputData.replace(/```json/gi, '').replace(/```/g, '').trim();\n    out_JObj = JSON.parse(raw);\n  } else {\n    // Input is already an object\n    out_JObj = inputData;\n  }\n\n  const { text: builtText, ranges } = buildTextAndRangesForKey(out_JObj, KEY);\n\n  if (!builtText) {\n    console.warn(`Warning: built string is empty for key \"${KEY}\". Check that the key exists and has data.`);\n  }\n\n  const main_JSON = makeMainJsonTemplate();\n  // set inserted text\n  main_JSON.requests[1].insertText.text = builtText;\n\n  // 1) base style (applies to all text)\n  main_JSON.requests.push({\n    updateTextStyle: {\n      objectId: 'g374a57b30b7_3_5',\n      style: {\n        fontFamily: 'Lexend',\n        foregroundColor: { opaqueColor: { themeColor: 'DARK2' } },\n        bold: false,\n        italic: false,\n        fontSize: { magnitude: 12, unit: 'PT' },\n        // set a sensible base weight (addresses will override to 300, headers to 400)\n        weightedFontFamily: { fontFamily: 'Lexend', weight: 300 }\n      },\n      textRange: { type: 'ALL' },\n      fields: 'fontFamily,foregroundColor,bold,italic,fontSize,weightedFontFamily'\n    }\n  });\n\n  // 2) per-range overrides for header/address weights\n  // We create one updateTextStyle request per range to set only weightedFontFamily.\n  for (const r of ranges) {\n    // sanity check\n    if (typeof r.startIndex !== 'number' || typeof r.endIndex !== 'number' || r.endIndex <= r.startIndex) {\n      continue;\n    }\n    main_JSON.requests.push({\n      updateTextStyle: {\n        objectId: 'g374a57b30b7_3_5',\n        style: {\n          weightedFontFamily: { fontFamily: 'Lexend', weight: r.weight }\n        },\n        textRange: { type: 'FIXED_RANGE', startIndex: r.startIndex, endIndex: r.endIndex },\n        fields: 'weightedFontFamily'\n      }\n    });\n  }\n\n  // For n8n logging\n  console.log(`\\n--- Built text for key=\"${KEY}\" ---\\n`);\n  console.log(builtText || '(empty)');\n  console.log(`\\n--- ${ranges.length} style ranges computed ---`);\n  console.log(JSON.stringify(ranges, null, 2));\n  console.log(`\\n--- main_JSON preview ---\\n`);\n  console.log(JSON.stringify(main_JSON, null, 2));\n\n  // Return the result for n8n\n  return {locations: main_JSON};\n\n} catch (err) {\n  console.error('Error:', err && err.message ? err.message : err);\n  // In n8n, we can throw an error to stop the workflow\n  throw new Error(`Processing failed: ${err.message}`);\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        864
+      ],
+      "id": "5e78d2a1-1ff2-4237-9051-7ca036a51469",
+      "name": "Code - Locations"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $('Merge - ID').item.json.ID }}:batchUpdate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP - Slides API Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.locations) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        368,
+        1088
+      ],
+      "id": "3fcd0e20-3411-4346-b27f-1b47324a9be8",
+      "name": "HTTP - Locations"
+    },
+    {
+      "parameters": {
+        "content": "## Locations update for either slide ",
+        "height": 432,
+        "width": 464,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        80,
+        800
+      ],
+      "typeVersion": 1,
+      "id": "f337552c-71ac-449f-9cf4-81f1e87e5ae7",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Name & Date update for either slide ",
+        "height": 432,
+        "width": 448,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        592,
+        800
+      ],
+      "typeVersion": 1,
+      "id": "26d38da4-227f-4ff4-868e-54445688ac8f",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $('Merge - ID').item.json.ID }}:batchUpdate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP - Slides API Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.wedding_name_time) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        832,
+        1072
+      ],
+      "id": "151e945a-43fe-42d3-ab9d-0708b9e07f23",
+      "name": "HTTP - Name_Date"
+    },
+    {
+      "parameters": {
+        "jsCode": "// --- Step 1: Get wedding_name_time data from n8n context ---\nconst inputData = $('AI Agent').first().json.output;\nconst KEY = 'wedding_name_time'; // Fixed key as in original\n\n// If your consumer expects 1-based range indices, change to 1\nconst INDEX_OFFSET = 0;\n\n// The target objectId you gave\nconst OBJECT_ID = 'g374ccacace8_0_0';\n\n/** Parse a date string robustly:\n *  - Accepts MM/DD/YYYY or DD/MM/YYYY (heuristic: if first part > 12 => it's day)\n *  - Accepts YYYY-MM-DD\n * Returns a Date object or null if invalid.\n */\nfunction parseDateString(s) {\n  if (!s || typeof s !== 'string') return null;\n  const t = s.trim();\n\n  // ISO-like YYYY-MM-DD\n  const iso = t.match(/^(\\d{4})-(\\d{1,2})-(\\d{1,2})$/);\n  if (iso) {\n    const y = +iso[1], m = +iso[2] - 1, d = +iso[3];\n    const dt = new Date(y, m, d);\n    return isNaN(dt.getTime()) ? null : dt;\n  }\n\n  // Slash or dash separated like MM/DD/YYYY or DD/MM/YYYY\n  const parts = t.match(/^(\\d{1,2})[\\/\\-](\\d{1,2})[\\/\\-](\\d{4})$/);\n  if (parts) {\n    let a = +parts[1], b = +parts[2], y = +parts[3];\n    // if first > 12 then it's day (DD/MM/YYYY), otherwise assume MM/DD/YYYY\n    let month, day;\n    if (a > 12) {\n      day = a; month = b;\n    } else {\n      month = a; day = b;\n    }\n    const dt = new Date(y, month - 1, day);\n    return isNaN(dt.getTime()) ? null : dt;\n  }\n\n  // Last resort: try Date.parse()\n  const parsed = Date.parse(t);\n  if (!isNaN(parsed)) return new Date(parsed);\n\n  return null;\n}\n\n/** Parse a time string into { hours, minutes } using am/pm or 24h heuristics.\n *  Accepts \"09:00 AM\", \"9:00 am\", \"09:00\", \"17:30\", etc.\n *  Returns { hours, minutes } (24-hour) or null.\n */\nfunction parseTimeString(s) {\n  if (!s || typeof s !== 'string') return null;\n  const t = s.trim();\n\n  // match hh:mm [AM|PM]\n  const m = t.match(/^(\\d{1,2}):(\\d{2})(?:\\s*([AaPp][Mm]))?$/);\n  if (m) {\n    let hh = +m[1], mm = +m[2];\n    const ampm = m[3];\n    if (ampm) {\n      const isPm = /p/i.test(ampm);\n      if (hh === 12) hh = isPm ? 12 : 0;\n      else if (isPm) hh = hh + 12;\n    }\n    if (hh >= 0 && hh <= 23 && mm >= 0 && mm <= 59) return { hours: hh, minutes: mm };\n    return null;\n  }\n\n  // match hhmm like \"0900\"\n  const m2 = t.match(/^(\\d{2})(\\d{2})$/);\n  if (m2) {\n    const hh = +m2[1], mm = +m2[2];\n    if (hh >= 0 && hh <= 23 && mm >= 0 && mm <= 59) return { hours: hh, minutes: mm };\n  }\n\n  return null;\n}\n\n/** Format a Date object to \"MMMM dd, yyyy\" and uppercase (e.g. \"SEPTEMBER 12, 2025\") */\nfunction formatLongDateUpper(dateObj) {\n  if (!dateObj) return '';\n  const opts = { month: 'long', day: '2-digit', year: 'numeric' };\n  // en-US to ensure month names like \"September\"\n  return new Intl.DateTimeFormat('en-US', opts).format(dateObj);\n}\n\n/** Format a Date/time to \"h:mm tt\" uppercase (e.g. \"9:00 AM\") */\nfunction formatTimeUpper(dateObj) {\n  if (!dateObj) return '';\n  const opts = { hour: 'numeric', minute: '2-digit', hour12: true };\n  return new Intl.DateTimeFormat('en-US', opts).format(dateObj).toLowerCase();\n}\n\nfunction buildTextAndRangesFromWedding(obj, key) {\n  const data = obj && obj[key];\n  if (!data) return { text: '', ranges: [] };\n\n  // Accept either object with names/date/time or fallback shapes\n  const nameRaw = (data.names || data.name || '').toString().trim();\n  const dateRaw = (data.date || '').toString().trim();\n  const timeRaw = (data.time || '').toString().trim();\n\n  // Parse date\n  const parsedDate = parseDateString(dateRaw);\n  const dateStr = parsedDate ? formatLongDateUpper(parsedDate) : (dateRaw ? dateRaw : '');\n\n  // Parse time: combine with parsedDate if possible so formatted time honors am/pm logic\n  let timeStr = '';\n  const parsedTime = parseTimeString(timeRaw);\n  if (parsedTime) {\n    // if we have a parsed date use it, else use today (only the time portion matters)\n    const baseDate = parsedDate || new Date();\n    const dt = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), parsedTime.hours, parsedTime.minutes);\n    timeStr = formatTimeUpper(dt);\n  } else if (timeRaw) {\n    timeStr = timeRaw.toLowerCase();\n  }\n\n  // Build the text lines\n  const lines = [ nameRaw, dateStr, timeStr ].map(s => (s === null || s === undefined ? '' : String(s).trim()));\n  // Remove trailing empty lines if any (but keep empty name unlikely)\n  while (lines.length && lines[lines.length - 1] === '') lines.pop();\n\n  const text = lines.join('\\n');\n\n  // Compute ranges for each line (0-based, endIndex = start + length)\n  const ranges = [];\n  let cursor = 0;\n  const nameLine = lines[0] || '';\n  const dateLine = lines[1] || '';\n  const timeLine = lines[2] || '';\n\n  // name range (if present)\n  if (nameLine) {\n    const s = cursor;\n    const e = s + nameLine.length;\n    ranges.push({ startIndex: s + INDEX_OFFSET, endIndex: e + INDEX_OFFSET, role: 'name' });\n    cursor = e + 1; // skip newline\n  } else {\n    // if no name, cursor stays\n  }\n\n  // date range (if present)\n  if (dateLine) {\n    const s = cursor;\n    const e = s + dateLine.length;\n    ranges.push({ startIndex: s + INDEX_OFFSET, endIndex: e + INDEX_OFFSET, role: 'date' });\n    cursor = e + 1;\n  }\n\n  // time range (if present)\n  if (timeLine) {\n    const s = cursor;\n    const e = s + timeLine.length;\n    ranges.push({ startIndex: s + INDEX_OFFSET, endIndex: e + INDEX_OFFSET, role: 'time' });\n    cursor = e + 1;\n  }\n\n  return { text, ranges };\n}\n\nfunction makeMainJsonTemplate(objectId, text) {\n  return {\n    requests: [\n      {\n        deleteText: {\n          objectId,\n          textRange: { type: 'ALL' }\n        }\n      },\n      {\n        insertText: {\n          objectId,\n          insertionIndex: 0,\n          text\n        }\n      }\n      // updateTextStyle requests appended later\n    ]\n  };\n}\n\n// --- Main execution ---\ntry {\n  let out_JObj;\n  \n  // Handle different input types (string or already parsed object)\n  if (typeof inputData === 'string') {\n    // Clean and parse if input is string (like original file content)\n    let raw = inputData.replace(/```json/gi, '').replace(/```/g, '').trim();\n    out_JObj = JSON.parse(raw);\n  } else {\n    // Input is already an object\n    out_JObj = inputData;\n  }\n\n  const { text, ranges } = buildTextAndRangesFromWedding(out_JObj, KEY);\n\n  if (!text) {\n    console.warn(`Warning: built text is empty for key \"${KEY}\". Check that the key exists and has data.`);\n  }\n\n  const main_JSON = makeMainJsonTemplate(OBJECT_ID, text);\n\n  // 1) base style: Lexend, color, base fontSize 12, base weight 200\n  main_JSON.requests.push({\n    updateTextStyle: {\n      objectId: OBJECT_ID,\n      style: {\n        fontFamily: 'Lexend',\n        foregroundColor: { opaqueColor: { themeColor: 'DARK2' } },\n        bold: false,\n        italic: false,\n        fontSize: { magnitude: 12, unit: 'PT' },\n        weightedFontFamily: { fontFamily: 'Lexend', weight: 200 }\n      },\n      textRange: { type: 'ALL' },\n      fields: 'fontFamily,foregroundColor,bold,italic,fontSize,weightedFontFamily'\n    }\n  });\n\n  // 2) per-range overrides\n  // Name => weight 300, size 20\n  // Date => weight 200, size 12 (same as base but we still explicitly set it)\n  // Time => weight 200, size 12\n  for (const r of ranges) {\n    // map role to desired settings\n    let weight = 200, size = 12;\n    if (r.role === 'name') { weight = 300; size = 20; }\n    else if (r.role === 'date' || r.role === 'time') { weight = 200; size = 10; }\n\n    // sanity check indices\n    if (typeof r.startIndex !== 'number' || typeof r.endIndex !== 'number' || r.endIndex <= r.startIndex) {\n      continue;\n    }\n\n    main_JSON.requests.push({\n      updateTextStyle: {\n        objectId: OBJECT_ID,\n        style: {\n          weightedFontFamily: { fontFamily: 'Lexend', weight },\n          fontSize: { magnitude: size, unit: 'PT' }\n        },\n        textRange: { type: 'FIXED_RANGE', startIndex: r.startIndex, endIndex: r.endIndex },\n        fields: 'weightedFontFamily,fontSize'\n      }\n    });\n  }\n\n  // For n8n logging\n  console.log(`\\n--- Built text for key=\"${KEY}\" ---\\n`);\n  console.log(text || '(empty)');\n  console.log('\\n--- Computed ranges ---');\n  console.log(JSON.stringify(ranges, null, 2));\n  console.log(`\\n--- main_JSON preview ---\\n`);\n  console.log(JSON.stringify(main_JSON, null, 2));\n\n  // Return the result for n8n\n  return {wedding_name_time: main_JSON};\n\n} catch (err) {\n  console.error('Error:', err && err.message ? err.message : err);\n  // In n8n, we can throw an error to stop the workflow\n  throw new Error(`Processing failed: ${err.message}`);\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        864
+      ],
+      "id": "b4e2cfc5-a03b-4ccf-8ea8-236a8e3b517f",
+      "name": "Code - Name_Date"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $('Merge - ID').item.json.ID }}/export?mimeType=application/pdf",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('HTTP - Slides API Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "Accept",
+              "value": "application/pdf"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "PDF"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1392,
+        720
+      ],
+      "id": "8f0f3ef1-460a-457a-975b-d7cf823a6801",
+      "name": "HTTP - Download PDF"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  // Pull the name directly from your Setvar node\n  const name = $('Setvar - Edit Fields').first().json.wedding_name_time.names + \" Wedding Planner\" || 'Slide';\n\n  // Rename the binary file\n  if (item.binary && item.binary.PDF) {\n    item.binary.PDF.fileName = `${name}.pdf`;\n  }\n\n  return item;\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1632,
+        720
+      ],
+      "id": "25982b38-e50a-41f6-9cae-67c4b406be32",
+      "name": "Code - Update PDF name"
+    },
+    {
+      "parameters": {
+        "sendTo": "{EMAIL ADDRESS}",
+        "subject": "={{ $('Setvar - Edit Fields').item.json.wedding_name_time.names }} - {BUSINESS NAME} - Personalized Wedding Plan, Ready for Review",
+        "message": "=<!DOCTYPE html>\n<html>\n  <body style=\"font-family: Arial, sans-serif; color: #333; line-height: 1.6;\">\n    <div style=\"max-width: 600px; padding: 0px; border-radius: 8px;\">\n      <h2 style=\"color: #b56576; text-align: center;\">Your Wedding Plan is Ready 💍</h2>\n\n      <p>Dear {{ $('Get row(s) in sheet').item.json['First Name'] }},</p>\n\n      <p>\n        We’re excited to share with you the personalized wedding plan we’ve prepared.  \n        Attached you’ll find a detailed PDF including your event timeline, vendor information, \n        and special arrangements for your big day.\n      </p>\n\n      <p>\n        Please review the details carefully and let us know if there are any changes \n        or additions you’d like to make. We're here to ensure everything runs \n        smoothly and just as you envisioned.\n      </p>\n\n      <p>\n        We can’t wait to celebrate this special journey with you!  \n      </p>\n\n      <p style=\"margin-top: 30px;\">\n        Warm regards, <br>\n        <strong>{BUSINESS NAME}</strong>\n      </p>\n\n      <hr style=\"margin: 30px 0; border: none; border-top: 1px solid #eee;\">\n\n      <p style=\"font-size: 12px; color: #888; text-align: center;\">\n        Feel free to reply to this email or contact {BUSINESS NAME} directly if you \n        feel like the details can be further tailed to your specific preferences.\n      </p>\n\n      <p style=\"font-size: 13px; color: #777; text-align: center; margin-top: 20px;\">\n        🌸 <em>Bonus:</em> We've created a <a href=\"{SUGGESTION DRIVE LINK}\" target=\"_blank\" style=\"color: #b56576; text-decoration: none; font-weight: bold;\">Wedding Day Bonus Guide</a>, a quick one-page list of thoughtful tips and ideas to make your celebration even more special.\n      </p>\n    </div>\n  </body>\n</html>\n",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "PDF"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1904,
+        848
+      ],
+      "id": "96482807-4ec7-484f-89dc-f659375502a8",
+      "name": "Send a message",
+      "webhookId": "644cdd97-f1d7-4409-b747-3ca2fda3a1d6",
+      "alwaysOutputData": false,
+      "retryOnFail": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "a8lH4ENxRMulV2MJ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Send email to x & output on GDrive",
+        "height": 432,
+        "width": 992,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1088,
+        560
+      ],
+      "typeVersion": 1,
+      "id": "a093d855-30c0-4fd7-b71c-dfd140a70933",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $now.format('MM-dd-yyyy') }} {{ $('Get row(s) in sheet').item.json['First Name'] }} {{ $('Get row(s) in sheet').item.json['Last Name'] }} - Wedding for {{ $json.wedding_name_time.names }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "{FOLDER ID}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2496,
+        672
+      ],
+      "id": "fc412689-d5f2-4df9-a1e1-b3b8ce6c0b2d",
+      "name": "Drive - Create Folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "LLwkSAj4vVwk6UyC",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Merge - ID').item.json.ID }}",
+          "mode": "id"
+        },
+        "name": "={{ $('Setvar - Edit Fields').item.json.wedding_name_time.names }}",
+        "sameFolder": false,
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Drive - Create Folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1184,
+        720
+      ],
+      "id": "d50ce493-6167-4dcc-8565-03f533f2fdaf",
+      "name": "Drive - Upload Slide",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "LLwkSAj4vVwk6UyC",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "PDF",
+        "name": "={{ $('Setvar - Edit Fields').item.json.wedding_name_time.names }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Drive - Create Folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1904,
+        592
+      ],
+      "id": "d0f915e4-01c8-4182-87f7-03279ee08661",
+      "name": "Drive - Upload PDF",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "LLwkSAj4vVwk6UyC",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "62d3dee5-fd1f-4321-9a00-546b98311611",
+              "leftValue": "={{ $('Setvar - Edit Fields').item.json.vendors.length }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "4c6adda6-f0a9-4486-984b-c7f815d5dab2",
+              "leftValue": "={{ $('Setvar - Edit Fields').item.json.vendors.length }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "a0b2dbca-cc8c-4d72-af69-065d9a61211b",
+              "leftValue": "={{ $('Setvar - Edit Fields').item.json.vendors.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1808,
+        448
+      ],
+      "id": "a00c9b25-2203-41bc-94d4-da12d8d90972",
+      "name": "If - Vendors provided or not"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d68ead94-cf49-4628-96bc-21dc9152cbc3",
+              "name": "={{ $('Setvar - JSON to Separate Obj').item.json.Presentation_ID }}",
+              "value": "{SLIDE ID}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1264,
+        608
+      ],
+      "id": "58bf4d1e-6861-494f-8bfd-38c7c239f8e6",
+      "name": "Setvar - Presentation ID Slide "
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $json.ID }}:batchUpdate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP - Slides API Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"requests\": [\n    {\n      \"deleteText\": {\n        \"objectId\": \"{OBJECT 1}\",\n        \"textRange\": {\n          \"type\": \"ALL\"\n        }\n      }\n    },\n    {\n      \"insertText\": {\n        \"objectId\": \"{OBJECT 1}\",\n        \"insertionIndex\": 0,\n        \"text\": \"No vendor details were provided - looks like this will be handled in-house or done DIY style by family and friends.\"\n      }\n    },\n    {\n      \"updateParagraphStyle\": {\n        \"objectId\": \"{OBJECT 1}\",\n        \"textRange\": {\n          \"type\": \"ALL\"\n        },\n        \"style\": {\n          \"alignment\": \"CENTER\",\n          \"lineSpacing\": 90\n        },\n        \"fields\": \"alignment,lineSpacing\"\n      }\n    },\n    {\n      \"updateTextStyle\": {\n        \"objectId\": \"{OBJECT 1}\",\n        \"textRange\": {\n          \"type\": \"FIXED_RANGE\",\n          \"startIndex\": 0,\n          \"endIndex\": 115\n        },\n        \"style\": {\n          \"fontFamily\": \"Lexend\",\n          \"fontSize\": {\n            \"magnitude\": 11,\n            \"unit\": \"PT\"\n          },\n          \"weightedFontFamily\": {\n            \"fontFamily\": \"Lexend\",\n            \"weight\": 300\n          },\n          \"foregroundColor\": {\n            \"opaqueColor\": {\n              \"themeColor\": \"DARK2\"\n            }\n          }\n        },\n        \"fields\": \"fontFamily,fontSize,weightedFontFamily,foregroundColor\"\n      }\n    }\n  ]\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -880,
+        608
+      ],
+      "id": "da198890-5911-4d1a-9c28-333265da2a56",
+      "name": "HTTP - Vendors Middle Box1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8f27c386-181e-467b-813f-01fee4f08d21",
+              "name": "={{ $('Setvar - JSON to Separate Obj').item.json.Presentation_ID }}",
+              "value": "={{ $('Setvar - Presentation ID Slide ').item.json.ID }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -400,
+        608
+      ],
+      "id": "cc89e29f-ce2a-473b-be3f-284467adc738",
+      "name": "Setvar - Update ID Slide "
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Setvar - Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Timeline JS": {
+      "main": [
+        [
+          {
+            "node": "Setvar - Timeline JSON Template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Timeline": {
+      "main": [
+        [
+          {
+            "node": "Code - Notes_details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - Timeline Request JSON": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Timeline",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - Timeline JSON Template": {
+      "main": [
+        [
+          {
+            "node": "Setvar - Timeline Request JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - Update ID Slide 1": {
+      "main": [
+        [
+          {
+            "node": "Merge - ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - Update ID Slide 2": {
+      "main": [
+        [
+          {
+            "node": "Merge - ID",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "HTTP - Vendors Left Box": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Vendors Right Box",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Vendors Right Box": {
+      "main": [
+        [
+          {
+            "node": "Setvar - Update ID Slide 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Vendors Middle Box": {
+      "main": [
+        [
+          {
+            "node": "Setvar - Update ID Slide 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Vendors JS Middle": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Vendors Middle Box",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Vendors JS Left/Right": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Vendors Left Box",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - Presentation ID Slide 1": {
+      "main": [
+        [
+          {
+            "node": "Code - Vendors JS Left/Right",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - Presentation ID Slide 2": {
+      "main": [
+        [
+          {
+            "node": "Code - Vendors JS Middle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If - Slide 1 OR 2": {
+      "main": [
+        [
+          {
+            "node": "Setvar - Presentation ID Slide 1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Setvar - Presentation ID Slide 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - JSON to Separate Obj": {
+      "main": [
+        [
+          {
+            "node": "If - Vendors provided or not",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Slides API Access Token": {
+      "main": [
+        [
+          {
+            "node": "Setvar - JSON to Separate Obj",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Drive - Create Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge - ID": {
+      "main": [
+        [
+          {
+            "node": "Code - Timeline JS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Notes_details": {
+      "main": [
+        [
+          {
+            "node": "Code - Locations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Notes_details": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Notes_details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Locations": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Locations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Locations": {
+      "main": [
+        [
+          {
+            "node": "Code - Name_Date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Name_Date": {
+      "main": [
+        [
+          {
+            "node": "Drive - Upload Slide",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Name_Date": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Name_Date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Download PDF": {
+      "main": [
+        [
+          {
+            "node": "Code - Update PDF name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Update PDF name": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Drive - Upload PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drive - Create Folder": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Slides API Access Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drive - Upload Slide": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Download PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If - Vendors provided or not": {
+      "main": [
+        [
+          {
+            "node": "Setvar - Presentation ID Slide ",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If - Slide 1 OR 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - Presentation ID Slide ": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Vendors Middle Box1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Vendors Middle Box1": {
+      "main": [
+        [
+          {
+            "node": "Setvar - Update ID Slide ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setvar - Update ID Slide ": {
+      "main": [
+        [
+          {
+            "node": "Merge - ID",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "91b5ea60-dabc-447c-9a97-794669312e44",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a23ebd19a28ff10d7e6a63885f33783e408ab093fdf9f3d8baf73b19e242bde9"
+  },
+  "id": "K2EVH0ReEaJwJ8fo",
+  "tags": []
+}
