@@ -205,7 +205,7 @@ Example output (simplified):
   Wedding suggestions PDF sample:
 
   <img src="./public/suggestion-page_template.png" alt="Wedding Suggestions Preview" width="300" height="400" target="_blank" />
-  <a href="https://www.canva.com/design/DAG2Pp99ak8/3WrDB1LZoeQSrnFIzeDFGw/edit" target="_blank" rel="noopener noreferrer">Get suggestion page</a>
+  <a href="https://www.canva.com/design/DAG2Pp99ak8/3WrDB1LZoeQSrnFIzeDFGw/edit" target="_blank">Get suggestion page</a>
 
   - **Email template layout:**  
   Email template sample:
