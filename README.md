@@ -94,7 +94,7 @@ Example output (simplified):
 
 - **Google Sheet Reference:**  
   A public demo sheet showing the **questions and answers** will be provided:  
-  <a href="https://docs.google.com/spreadsheets/d/1nLz-K7kj8Bp5IFjLjLgvLj8cLC-r2pkrV-yChMPfJaPs/view" target="_blank" rel="noopener noreferrer">Google Sheet Sample Template</a>
+  <a href="https://docs.google.com/spreadsheets/d/1nLz-K7kj8Bp5IFjLJgvLj8cLC-r2pkrV-yChMPfJaPs/view" target="_blank" rel="noopener noreferrer">Google Sheet Sample Template</a>
 
 ---
 
