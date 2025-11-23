@@ -1,8 +1,8 @@
-# n8n Wedding Planner PDF Automation 
+# n8n Event Planner PDF Automation 
 Webhook → Google Sheets → n8n → Google Slides/PDF → Google Drive/Gmail
 
 ## Overview
-This project automates the generation of a personalized **wedding planner PDF** based on form submissions collected through a **webhook payload**. Only the submission ID is taken from the webhook which is then mapped on the Google Sheet to get all the details from the particular row **see example links and images below**
+This project automates the generation of a personalized **Event planner PDF** based on form submissions collected through a **webhook payload**. Only the submission ID is taken from the webhook which is then mapped on the Google Sheet to get all the details from the particular row **see example links and images below**
 
 When a user fills out the form, their responses are processed end-to-end through **Google Sheets** and **n8n**, resulting in a beautifully formatted **PDF planner** (template preview provided)
 
@@ -11,7 +11,7 @@ When a user fills out the form, their responses are processed end-to-end through
 ## Workflow Summary
 
 ### 1. Wix Form Submission (can use any form, just the 'Submission ID' in the webhook is required)
-A custom Wix form collects detailed information from users regarding their wedding day including **timeline**, **vendors**, **locations**, **notes**, and **special requests**.  
+A custom Wix form collects detailed information from users regarding their Event day including **timeline**, **vendors**, **locations**, **notes**, and **special requests**.  
 The form is clean, well-structured, and designed for an elegant user experience.
 
 ### 2. Wix Automation → Google Sheets + Webhook
@@ -31,13 +31,13 @@ It listens for the incoming webhook and performs the following steps:
    - **Vendors**
    - **Notes/Details**
    - **Locations**
-   - **Wedding Name & Time**
+   - **Event Name & Time**
 4. **Data Formatting Scripts (Custom JavaScript Nodes)** - Splits, formats, and aligns text into **columns (left, middle, right)** depending on content type (e.g., vendors vs. timeline).
-5. **Google Slides API** - Inserts the processed data into a wedding planner **Google Slides template**.  
+5. **Google Slides API** - Inserts the processed data into a Event planner **Google Slides template**.  
    Each category (timeline, vendors, notes, etc.) is styled and placed in its respective text boxes.
-6. **Final Export (PDF)** - The Google Slides file is used to export a finished **Wedding Planner PDF** for the client.
+6. **Final Export (PDF)** - The Google Slides file is used to export a finished **Event Planner PDF** for the client.
 7. **Google Drive Upload & Email Delivery** —  
-   Once the wedding planner PDF is generated, the workflow automatically uploads it to a designated **Google Drive folder**.  
+   Once the Event planner PDF is generated, the workflow automatically uploads it to a designated **Google Drive folder**.  
    After upload, an **email is sent** (via Gmail integration) to the client or planner containing:
    - A personalized message 
    - Generated PDF as attachment. 
@@ -66,7 +66,7 @@ Example output (simplified):
   "locations": [
     { "header": "Ceremony Location", "address": "Al Qasr Ballroom, Dubai" }
   ],
-  "wedding_name_time": {
+  "Event_name_time": {
     "names": "John & Doe",
     "date": "12/13/2025",
     "time": "09:00 PM"
@@ -82,14 +82,14 @@ Example output (simplified):
   <img src="./public/n8n_screenshot.png" alt="n8n workflow" width="980" height="282" target="_blank" />
 
 - **Final planner layout:**  
-  Final Wedding Planner PDF sample:
+  Final Event Planner PDF sample:
 
-  <img src="./public/wedding-planner_template.png" alt="Wedding Planner Template Preview" width="300" height="400" target="_blank" />
+  <img src="./public/Event-planner_template.png" alt="Event Planner Template Preview" width="300" height="400" target="_blank" />
 
 - **Suggestion page layout:**  
-  Wedding suggestions PDF sample:
+  Event suggestions PDF sample:
 
-  <img src="./public/suggestion-page_template.png" alt="Wedding Suggestions Preview" width="300" height="400" target="_blank" />
+  <img src="./public/suggestion-page_template.png" alt="Event Suggestions Preview" width="300" height="400" target="_blank" />
   <br />
   <a href="https://www.canva.com/design/DAG2Pp99ak8/3WrDB1LZoeQSrnFIzeDFGw/edit" target="_blank">Get suggestion page</a>
 
@@ -120,7 +120,7 @@ Example output (simplified):
 - Sensitive data such as API keys, refresh tokens, and client secrets have been **removed** before committing this workflow file.
 - Feel free to leave a message/contact me if you're not sure how google APIs works and how to get Access/Refresh tokens from it. It took me a while to understand it aswell 🫂
 - I have no clue how to code in JS. So I coded in Python and VB.NET for the core logic and manually converted the main logic into Pseudocode, gave it to chatgpt to convert it into JS code for n8n JS code blocks.
-- To test out the n8n flow, make sure have Node.js installed and just run "npx n8n" in CMD. Import of the code using the json file taken from workflows/n8n - wedding planner.json. Add sensiive data i.e. API keys,. and you're good to go.
+- To test out the n8n flow, make sure have Node.js installed and just run "npx n8n" in CMD. Import of the code using the json file taken from workflows/n8n - Event planner.json. Add sensiive data i.e. API keys,. and you're good to go.
 
 ---
 
